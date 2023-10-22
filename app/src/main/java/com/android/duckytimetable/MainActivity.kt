@@ -5,7 +5,7 @@ import android.os.Bundle
 
 class MainActivity : AppCompatActivity() {
 
-    //hello 123
+    //hello 12
     //Hello qwe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
