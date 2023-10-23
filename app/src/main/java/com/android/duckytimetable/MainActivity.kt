@@ -1,5 +1,6 @@
 package com.android.duckytimetable
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.add) {
             Toast.makeText(this, "Clicked Add Icon..", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, AddActivity::class.java)
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
