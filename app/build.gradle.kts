@@ -50,7 +50,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("androidx.room:room-ktx:2.5.0")
-    kapt("android.room:room-compiler:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0")
 
     // Lifecycle components
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
