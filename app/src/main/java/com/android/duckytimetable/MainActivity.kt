@@ -7,11 +7,18 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity() {
 
     private var toolbar: Toolbar? = null
+
+    private var recyclerView: RecyclerView? = null
+
+    private var linearLayoutManager: LinearLayoutManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,6 +26,15 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         toolbar?.title = ""
         setSupportActionBar(toolbar)
+
+        val customAdapter = CustomAdapter(fetchList())
+
+
+        recyclerView = findViewById(R.id.recyclerView)
+        linearLayoutManager = LinearLayoutManager(applicationContext)
+        recyclerView?.layoutManager = linearLayoutManager
+        recyclerView?.adapter = customAdapter
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -33,5 +49,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun fetchList(): ArrayList<TestData> {
+        val list = arrayListOf<TestData>()
+
+        for (i in 0..3) {
+            val model = TestData("Name $i", "$i 2", "1 $i", "Monday", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            list.add(model)
+        }
+        return list
     }
 }
