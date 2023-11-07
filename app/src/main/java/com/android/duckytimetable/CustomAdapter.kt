@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.android.duckytimetable.data.Timetable
 
 
-class CustomAdapter(private val list: ArrayList<TestData>) : RecyclerView.Adapter<CustomAdapter.MyViewHolder>() {
+class CustomAdapter/*(private val list: ArrayList<Timetable>)*/ : RecyclerView.Adapter<CustomAdapter.MyViewHolder>() {
+    private var list = emptyList<Timetable>()
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.name)
         val minutes: TextView = view.findViewById(R.id.minutes)
@@ -24,8 +26,8 @@ class CustomAdapter(private val list: ArrayList<TestData>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = list[position]
         holder.name.text = item.name
-        holder.minutes.text = item.minutes
-        holder.hours.text = item.hours
+        holder.minutes.text = item.minutes.toString()
+        holder.hours.text = item.hours.toString()
         holder.weekDay.text = item.weekDay
         holder.details.text = item.details
     }
@@ -33,5 +35,8 @@ class CustomAdapter(private val list: ArrayList<TestData>) : RecyclerView.Adapte
     override fun getItemCount(): Int {
         return list.count()
     }
-
+    fun setData(timetable: List<Timetable>){
+        this.list = timetable
+        notifyDataSetChanged()
+    }
 }

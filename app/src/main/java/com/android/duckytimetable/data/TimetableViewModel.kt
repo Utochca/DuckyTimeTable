@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 //вьюмодел для сохраненее данных во время параллельной работы
 class TimetableViewModel(application: Application) : AndroidViewModel(application) {
-    private val readAllData: LiveData<List<Timetable>>
+    val readAllData: LiveData<List<Timetable>>
     private val repository: TimetableRepository
     init{
         val timetableDao = TimetableDatabase.getDatabase(application).timeTableDao()

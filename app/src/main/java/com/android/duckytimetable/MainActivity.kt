@@ -7,8 +7,11 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.duckytimetable.data.TimetableViewModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private var recyclerView: RecyclerView? = null
 
     private var linearLayoutManager: LinearLayoutManager? = null
+    private lateinit var mTimetableViewModel : TimetableViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +30,17 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         toolbar?.title = ""
         setSupportActionBar(toolbar)
-
-        val customAdapter = CustomAdapter(fetchList())
-
-
+        val customAdapter = CustomAdapter()
         recyclerView = findViewById(R.id.recyclerView)
         linearLayoutManager = LinearLayoutManager(applicationContext)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.adapter = customAdapter
+
+        mTimetableViewModel = ViewModelProvider(this).get(TimetableViewModel ::class.java)
+        mTimetableViewModel.readAllData.observe(this, Observer { timetable ->
+            customAdapter.setData(timetable)
+        })
+
 
     }
 
