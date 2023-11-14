@@ -5,11 +5,12 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+
 //методы для доступа к базе данных
 @Dao
 interface TimetableDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE )
     fun addTimetable(timetable: Timetable)
-    @Query("SELECT * FROM timeTable_data")
+    @Query("SELECT * FROM timeTable_data ORDER BY hours DESC, minutes DESC")
     fun readAllData(): LiveData<List<Timetable>>
 }

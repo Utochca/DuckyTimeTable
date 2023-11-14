@@ -7,4 +7,5 @@ class TimetableRepository(private val timetableDao: TimetableDao) {
     suspend fun addTimetable(timetable:Timetable){
         timetableDao.addTimetable(timetable)
     }
+
 }
