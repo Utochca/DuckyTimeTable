@@ -14,7 +14,6 @@ class TimetableViewModel(application: Application) : AndroidViewModel(applicatio
         val timetableDao = TimetableDatabase.getDatabase(application).timeTableDao()
         repository = TimetableRepository(timetableDao)
         readAllData = repository.readAllData
-
     }
 
     fun addTimetable(timetable: Timetable){

@@ -41,12 +41,22 @@ class AddActivity : AppCompatActivity() {
         val addMinutes = minutes.selectedItem.toString()
         val addweekDays = weekDays.selectedItem.toString()
         val addnewDet = newDet.text.toString()
+        var newWeekDayId=0;
         if(inputCheck(addName,addHours,addMinutes,addweekDays,addnewDet)){
             Toast.makeText(this,"Please fill out all fields!",Toast.LENGTH_SHORT).show()
         }
         else{
+            when(addweekDays){
+                "Понедельник"->newWeekDayId=0
+                "Вторник"->newWeekDayId=1
+                "Среда"->newWeekDayId=2
+                "Четверг"->newWeekDayId=3
+                "Пятница"->newWeekDayId=4
+                "Суббота"->newWeekDayId=5
+                "Воскресенье"->newWeekDayId=6
+            }
             val timetable = Timetable(0,addName,Integer.parseInt(addHours),Integer.parseInt(addMinutes),
-                                  addweekDays,addnewDet)
+                                  addweekDays,addnewDet,newWeekDayId)
             mTimetableViewModel.addTimetable(timetable)
             Toast.makeText(this,"wow! New timetable!",Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)

@@ -12,4 +12,5 @@ data class Timetable (
     val hours : Int,
     val weekDay : String,
     val details : String,
+    val weekId : Int,
 )

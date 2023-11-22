@@ -11,6 +11,6 @@ import androidx.room.Query
 interface TimetableDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE )
     fun addTimetable(timetable: Timetable)
-    @Query("SELECT * FROM timeTable_data ORDER BY hours DESC, minutes DESC")
+    @Query("SELECT * FROM timeTable_data ORDER BY hours DESC, minutes DESC,weekId DESC")
     fun readAllData(): LiveData<List<Timetable>>
 }
