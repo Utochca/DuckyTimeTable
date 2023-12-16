@@ -39,4 +39,11 @@ class CustomAdapter/*(private val list: ArrayList<Timetable>)*/ : RecyclerView.A
         this.list = timetable
         notifyDataSetChanged()
     }
+
+    fun deleteItem(position: Int) {
+        val newList = list.toMutableList()
+        newList.removeAt(position)
+        list = newList
+        notifyItemRemoved(position)
+    }
 }

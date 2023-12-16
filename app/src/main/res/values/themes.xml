@@ -5,6 +5,11 @@
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/white</item>
+        <item name="backgroundColor_main">@color/D_purple1</item>
+        <item name="backgroundColor_fragment">@color/D_purple2</item>
+        <item name="backgroundColor_toolbar">@color/D_purple2</item>
+        <item name="fontColor">@color/white</item>
+        <item name="strokeColor_Edittext">@color/D_purple3</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 

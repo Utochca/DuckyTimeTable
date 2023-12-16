@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">DuckyTimetable</string>
     <string name="add">Add</string>
+    <string name="Добавить">Добавить</string>
+    <string name="Название">Название</string>
+    <string name="Описание">Описание</string>
+    <string name="dots">:</string>
     <string-array name="weekDays">
         <item>Не выбрано</item>
         <item>Понедельник</item>

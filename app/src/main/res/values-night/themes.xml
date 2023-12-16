@@ -1,7 +1,10 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.DuckyTimetable" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="backgroundColor_main">@color/N_purple1</item>
+        <item name="backgroundColor_fragment">@color/N_purple2</item>
+        <item name="backgroundColor_toolbar">@color/N_purple2</item>
+        <item name="fontColor">@color/white</item>
+        <item name="strokeColor_Edittext">@color/N_purple3</item>
     </style>
 </resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="backgroundColor_main" format="reference|color" />
+    <attr name="backgroundColor_fragment" format="reference|color" />
+    <attr name="backgroundColor_toolbar" format="reference|color" />
+    <attr name="strokeColor_Edittext" format="reference|color" />
+    <attr name="fontColor" format="reference|color" />
+</resources>

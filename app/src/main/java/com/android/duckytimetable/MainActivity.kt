@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.duckytimetable.data.TimetableViewModel
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private var linearLayoutManager: LinearLayoutManager? = null
     private lateinit var mTimetableViewModel : TimetableViewModel
+    private lateinit var customAdapter: CustomAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         toolbar?.title = ""
         setSupportActionBar(toolbar)
-        val customAdapter = CustomAdapter()
+        customAdapter = CustomAdapter()
         recyclerView = findViewById(R.id.recyclerView)
         linearLayoutManager = LinearLayoutManager(applicationContext)
         recyclerView?.layoutManager = linearLayoutManager
@@ -41,7 +43,8 @@ class MainActivity : AppCompatActivity() {
             customAdapter.setData(timetable)
         })
 
-
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(customAdapter))
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -51,20 +54,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.add) {
-            Toast.makeText(this, "Clicked Add Icon..", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, AddActivity::class.java)
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun fetchList(): ArrayList<TestData> {
-        val list = arrayListOf<TestData>()
-
-        for (i in 0..3) {
-            val model = TestData("Name $i", "$i 2", "1 $i", "Monday", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-            list.add(model)
-        }
-        return list
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
     }
 }
