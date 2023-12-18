@@ -26,8 +26,18 @@ class CustomAdapter/*(private val list: ArrayList<Timetable>)*/ : RecyclerView.A
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = list[position]
         holder.name.text = item.name
-        holder.minutes.text = item.minutes.toString()
-        holder.hours.text = item.hours.toString()
+        if(item.minutes.toString().length==1) {
+            holder.minutes.text = "0"+item.minutes.toString()
+        }
+        else{
+            holder.minutes.text = item.minutes.toString()
+        }
+        if(item.hours.toString().length==1) {
+            holder.hours.text = "0"+item.hours.toString()
+        }
+        else{
+            holder.hours.text = item.hours.toString()
+        }
         holder.weekDay.text = item.weekDay
         holder.details.text = item.details
     }
