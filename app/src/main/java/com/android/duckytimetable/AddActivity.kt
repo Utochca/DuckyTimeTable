@@ -3,6 +3,7 @@ package com.android.duckytimetable
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.android.duckytimetable.data.Timetable
 import com.android.duckytimetable.data.TimetableViewModel
+import java.time.LocalDateTime
 
 
 class AddActivity : AppCompatActivity() {
@@ -24,6 +26,8 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
+//        val service = NotificationService(applicationContext)
+
         button = findViewById(R.id.button2)
         button?.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
@@ -31,13 +35,13 @@ class AddActivity : AppCompatActivity() {
         }
         mTimetableViewModel = ViewModelProvider(this).get(TimetableViewModel::class.java)
         button?.setOnClickListener{
-           insertDataToDatabase()
+            insertDataToDatabase()
         }
     }
     private fun insertDataToDatabase(){
        val name : TextView = findViewById(R.id.editTextText)
-        val hours : Spinner = findViewById(R.id.spinner3)
-        val minutes : Spinner = findViewById(R.id.spinner2)
+        val hours : Spinner = findViewById(R.id.spinner2)
+        val minutes : Spinner = findViewById(R.id.spinner3)
         val weekDays : Spinner = findViewById(R.id.spinner)
         val newDet : TextView = findViewById(R.id.editTextText2)
 
@@ -68,6 +72,16 @@ class AddActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val scheduler = AndroidAlarmScheduler(this)
+        var alarmItem: AlarmItem? = null
+
+        alarmItem = AlarmItem(
+            time = createDayOfWeek(newWeekDayId+1, addHours.toInt(), addMinutes.toInt()),
+            name = addName,
+            description = addnewDet
+        )
+
+        scheduler.schedule(alarmItem)
 
     }
     private fun inputCheck(
@@ -88,6 +102,15 @@ class AddActivity : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(event)
+    }
+
+    fun createDayOfWeek(dayOfWeek: Int, hour: Int, min: Int): LocalDateTime {
+        var dt = LocalDateTime.of(LocalDateTime.now().year, LocalDateTime.now().month, LocalDateTime.now().dayOfMonth, hour, min, 0)
+
+        val daysUntilTargetDay = (dayOfWeek - dt.dayOfWeek.value + 7) % 7
+        dt = dt.plusDays(daysUntilTargetDay.toLong())
+
+        return dt
     }
 
 }
