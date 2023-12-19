@@ -3,7 +3,6 @@ package com.android.duckytimetable
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -64,7 +63,7 @@ class AddActivity : AppCompatActivity() {
                 "Суббота"->newWeekDayId=5
                 "Воскресенье"->newWeekDayId=6
             }
-            val timetable = Timetable(0,addName,Integer.parseInt(addHours),Integer.parseInt(addMinutes),
+            val timetable = Timetable(0,addName,Integer.parseInt(addMinutes),Integer.parseInt(addHours),
                                   addweekDays,addnewDet,newWeekDayId)
             mTimetableViewModel.addTimetable(timetable)
             Toast.makeText(this,"wow! New timetable!",Toast.LENGTH_SHORT).show()
