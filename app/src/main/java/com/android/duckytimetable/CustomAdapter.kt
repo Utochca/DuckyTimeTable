@@ -56,4 +56,11 @@ class CustomAdapter/*(private val list: ArrayList<Timetable>)*/ : RecyclerView.A
         list = newList
         notifyItemRemoved(position)
     }
+
+    fun getTextViews(position: Int, parent: ViewGroup): Array<TextView> {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_adapter_layout, parent, false)
+        val holder = MyViewHolder(view)
+        onBindViewHolder(holder, position)  // Call onBindViewHolder to bind data to the holder
+        return arrayOf(holder.name, holder.minutes, holder.hours, holder.weekDay, holder.details)
+    }
 }
