@@ -21,4 +21,14 @@ class TimetableViewModel(application: Application) : AndroidViewModel(applicatio
           repository.addTimetable(timetable)
         }
     }
+
+    fun deleteTimetable(timetable: Timetable) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteTimetable(timetable)
+        }
+    }
+
+    suspend fun getTimetableByNameAndTime(name: String, hours: String, minutes: String): Timetable? {
+        return repository.getTimetableByNameAndTime(name, hours, minutes)
+    }
 }

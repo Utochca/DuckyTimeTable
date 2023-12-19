@@ -8,4 +8,11 @@ class TimetableRepository(private val timetableDao: TimetableDao) {
         timetableDao.addTimetable(timetable)
     }
 
+    suspend fun deleteTimetable(timetable: Timetable) {
+        timetableDao.deleteTimetable(timetable)
+    }
+
+    suspend fun getTimetableByNameAndTime(name: String, hours: String, minutes: String): Timetable? {
+        return timetableDao.getTimetableByNameAndTime(name, hours, minutes)
+    }
 }

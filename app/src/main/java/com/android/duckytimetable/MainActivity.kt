@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             customAdapter.setData(timetable)
         })
 
-        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(customAdapter))
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(customAdapter, mTimetableViewModel))
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 

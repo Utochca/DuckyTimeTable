@@ -2,10 +2,13 @@ package com.android.duckytimetable
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.android.duckytimetable.data.TimetableViewModel
+import kotlinx.coroutines.launch
 
-class SwipeToDeleteCallback(private val adapter: CustomAdapter) : ItemTouchHelper.SimpleCallback(
+class SwipeToDeleteCallback(private val adapter: CustomAdapter, private val mTimetableViewModel: TimetableViewModel) : ItemTouchHelper.SimpleCallback(
     0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
 ) {
     override fun onMove(
@@ -22,9 +25,23 @@ class SwipeToDeleteCallback(private val adapter: CustomAdapter) : ItemTouchHelpe
         val textViews: Array<TextView> = getTextViewsFromAdapter(position, parent)
         if (direction == ItemTouchHelper.LEFT) {
             val nameTextView: String = textViews[0].text.toString()
-            val minutesTextView: String = textViews[1].text.toString()
-            Log.d("mu", "$nameTextView $minutesTextView")
-            adapter.deleteItem(position)
+            val hoursTextView: String = textViews[1].text.toString()
+            val minutesTextView: String = textViews[2].text.toString()
+            val weekDaysTextView: String = textViews[3].text.toString()
+            val descriptionTextView: String = textViews[4].text.toString()
+            Log.d("mu", "$nameTextView $minutesTextView $hoursTextView $descriptionTextView $weekDaysTextView")
+
+            mTimetableViewModel.viewModelScope.launch {
+                val timetableToDelete = mTimetableViewModel.getTimetableByNameAndTime(nameTextView, minutesTextView, hoursTextView)
+                if (timetableToDelete != null) {
+                    mTimetableViewModel.deleteTimetable(timetableToDelete)
+                    adapter.deleteItem(position) // Обновите адаптер для отображения удаленного элемента
+                } else {
+                    Log.d("mu", "Расписание не найдено в базе данных") // Обработайте случай, когда расписание не удалось найти в базе данных
+                }
+            }
+
+//            adapter.deleteItem(position)
         } else {
             adapter.notifyItemChanged(position)
         }
