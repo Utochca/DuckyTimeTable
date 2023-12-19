@@ -79,7 +79,7 @@
             android:textStyle="bold"
             cardView:layout_constraintBottom_toBottomOf="parent"
             cardView:layout_constraintEnd_toEndOf="parent"
-            cardView:layout_constraintHorizontal_bias="0.06"
+            cardView:layout_constraintHorizontal_bias="0.05"
             cardView:layout_constraintRight_toRightOf="parent"
             cardView:layout_constraintStart_toStartOf="parent"
             cardView:layout_constraintTop_toTopOf="parent"
