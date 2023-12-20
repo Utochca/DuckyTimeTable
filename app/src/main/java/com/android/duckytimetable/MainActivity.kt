@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         linearLayoutManager = LinearLayoutManager(applicationContext)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.adapter = customAdapter
-
         mTimetableViewModel = ViewModelProvider(this).get(TimetableViewModel ::class.java)
         mTimetableViewModel.readAllData.observe(this, Observer { timetable ->
             customAdapter.setData(timetable)
