@@ -3,8 +3,10 @@ package com.android.duckytimetable
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -18,14 +20,40 @@ import java.time.LocalDateTime
 
 
 class AddActivity : AppCompatActivity() {
-
+    lateinit var spinner : Spinner
+    lateinit var spinnerHours :Spinner
+    lateinit var spinnerMinutes :Spinner
     private var button: Button? = null
     private lateinit var  mTimetableViewModel : TimetableViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
-
 //        val service = NotificationService(applicationContext)
+        spinner = findViewById(R.id.spinner) as Spinner
+        spinnerHours = findViewById(R.id.spinner2) as Spinner
+        spinnerMinutes = findViewById(R.id.spinner3) as Spinner
+        val weekDay = arrayOf<String?>("Не выбрано","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье")
+        val myHours = arrayOf<String?>("0","1","2","3","4","5","6","7","8","9",
+                                       "10", "11","12","13","14","15","16","17","18","19",
+                                       "20","21","22","23")
+        val myMinutes = arrayOf<String?>("0","1","2","3","4","5","6","7","8","9",
+            "10","11","12","13","14","15","16","17","18","19",
+            "20","21","22","23","24","25","26","27","28","29",
+            "30","31","32","33","34","35","36","37","38","39",
+            "40","41","42","43","44","45","46","47","48","49",
+            "50","51","52","53","54","55","56","57","58","59","60")
+
+        val arrayAdapterWeek : ArrayAdapter<Any> = ArrayAdapter<Any>(this,R.layout.item,weekDay)
+        arrayAdapterWeek.setDropDownViewResource(R.layout.item)
+        spinner.adapter=arrayAdapterWeek
+
+        val arrayAdapterHours : ArrayAdapter<Any> = ArrayAdapter<Any>(this,R.layout.item,myHours)
+        arrayAdapterHours.setDropDownViewResource(R.layout.item)
+        spinnerHours.adapter=arrayAdapterHours
+
+        val arrayAdapterMinutes : ArrayAdapter<Any> = ArrayAdapter<Any>(this,R.layout.item,myMinutes)
+        arrayAdapterMinutes.setDropDownViewResource(R.layout.item)
+        spinnerMinutes.adapter=arrayAdapterMinutes
 
         button = findViewById(R.id.button2)
         button?.setOnClickListener{
@@ -79,6 +107,7 @@ class AddActivity : AppCompatActivity() {
             name = addName,
             description = addnewDet
         )
+        Log.d("AddActivity",createDayOfWeek(newWeekDayId+1, addHours.toInt(), addMinutes.toInt()).toString()+" "+addName+" "+addnewDet);
 
         scheduler.schedule(alarmItem)
 

@@ -10,7 +10,6 @@ import java.time.ZoneId
 class AndroidAlarmScheduler(
     private val context: Context
 ): AlarmScheduler {
-
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
     override fun schedule(item: AlarmItem) {
         val intent = Intent(context, AlarmReceiver::class.java).apply {
@@ -30,13 +29,13 @@ class AndroidAlarmScheduler(
         )
     }
     override fun cancel(item: AlarmItem) {
-        alarmManager.cancel(
-            PendingIntent.getBroadcast(
-                context,
-                item.hashCode(),
-                Intent(context, AlarmReceiver::class.java),
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            alarmManager.cancel(
+                PendingIntent.getBroadcast(
+                    context,
+                    item.hashCode(),
+                    Intent(context, AlarmReceiver::class.java),
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
             )
-        )
     }
 }

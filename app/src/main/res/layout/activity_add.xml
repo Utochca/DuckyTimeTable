@@ -42,24 +42,23 @@
         app:iconPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.634" />
+        app:layout_constraintVertical_bias="0.726" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="152dp"
-        android:layout_height="wrap_content"
+        android:layout_width="266dp"
+        android:layout_height="51dp"
         android:background="@drawable/outline"
-        android:entries="@array/weekDays"
         android:popupBackground="?attr/backgroundColor_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintVertical_bias="0.452" />
 
     <EditText
         android:id="@+id/editTextText"
@@ -85,11 +84,11 @@
         android:id="@+id/editTextText2"
         android:layout_width="318dp"
         android:layout_height="wrap_content"
+        android:autofillHints="Описание"
         android:background="@drawable/outline"
         android:ems="10"
         android:gravity="top|start"
         android:hint="@string/Описание"
-        android:autofillHints="Описание"
         android:inputType="textMultiLine"
         android:textAlignment="viewStart"
         android:textColor="?attr/fontColor"
@@ -99,7 +98,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.567" />
 
     <Spinner
         android:id="@+id/spinner2"

@@ -12,6 +12,5 @@
         <item name="strokeColor_Edittext">@color/D_purple3</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
-
     <style name="Theme.DuckyTimetable" parent="Base.Theme.DuckyTimetable" />
 </resources>

@@ -5,7 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.EventLogTags.Description
+import android.util.Log
 import androidx.core.app.NotificationCompat
 
 class NotificationService(
@@ -14,6 +14,7 @@ class NotificationService(
     private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     fun showNotification(name: String, description: String) {
+        Log.d("NotService","receiving");
         val activityIntent = Intent(context, MainActivity::class.java)
         val activityPendingIntent = PendingIntent.getActivity(
             context,
@@ -29,6 +30,7 @@ class NotificationService(
             .build()
 
         notificationManager.notify(1, notification)
+        Log.d("NotService","received");
     }
     companion object{
         const val COUNTER_CHANNEL_ID = "counter_channel"
