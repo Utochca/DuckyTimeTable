@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         toolbar?.title = ""
         setSupportActionBar(toolbar)
-        imageView = findViewById(R.id.imageView7)
+        imageView = findViewById(R.id.imageView)
         textView = findViewById(R.id.textView1)
         customAdapter = CustomAdapter()
         recyclerView = findViewById(R.id.recyclerView)
