@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -17,12 +20,13 @@ import com.android.duckytimetable.data.TimetableViewModel
 class MainActivity : AppCompatActivity() {
 
     private var toolbar: Toolbar? = null
-
     private var recyclerView: RecyclerView? = null
-
+    private var calk = 0
     private var linearLayoutManager: LinearLayoutManager? = null
     private lateinit var mTimetableViewModel : TimetableViewModel
     private lateinit var customAdapter: CustomAdapter
+    private lateinit var textView: TextView
+    private lateinit var imageView: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         toolbar?.title = ""
         setSupportActionBar(toolbar)
+        imageView = findViewById(R.id.imageView7)
+        textView = findViewById(R.id.textView1)
         customAdapter = CustomAdapter()
         recyclerView = findViewById(R.id.recyclerView)
         linearLayoutManager = LinearLayoutManager(applicationContext)
@@ -38,10 +44,16 @@ class MainActivity : AppCompatActivity() {
         mTimetableViewModel = ViewModelProvider(this).get(TimetableViewModel ::class.java)
         mTimetableViewModel.readAllData.observe(this, Observer { timetable ->
             customAdapter.setData(timetable)
+            if(customAdapter.itemCount!=0){
+                textView.visibility =  View.INVISIBLE
+            }
         })
-
         val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(customAdapter, mTimetableViewModel))
         itemTouchHelper.attachToRecyclerView(recyclerView)
+
+        imageView.setOnClickListener {
+            imageView.visibility=View.INVISIBLE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -53,6 +65,10 @@ class MainActivity : AppCompatActivity() {
         if (item.itemId == R.id.add) {
             val intent = Intent(this, AddActivity::class.java)
             startActivity(intent)
+        }
+        if(item.itemId==R.id.help){
+            imageView.visibility=View.VISIBLE
+            imageView.alpha= 0.4F
         }
         return super.onOptionsItemSelected(item)
     }

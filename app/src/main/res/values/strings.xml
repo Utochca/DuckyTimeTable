@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DuckNotes</string>
     <string name="add">Add</string>
+    <string name="help">Help</string>
     <string name="Добавить">Добавить</string>
     <string name="Название">Название</string>
     <string name="Описание">Описание</string>
