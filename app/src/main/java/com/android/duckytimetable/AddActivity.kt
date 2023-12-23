@@ -75,9 +75,6 @@ class AddActivity : AppCompatActivity() {
         button2 = findViewById(R.id.button)
         button2?.setOnClickListener{
             showDatePickerDialog()
-            flag = 1
-            spinner.isEnabled = false
-            spinner.setBackgroundColor(Color.LTGRAY);
         }
     }
     private fun insertDataToDatabase(){
@@ -189,6 +186,9 @@ class AddActivity : AppCompatActivity() {
                 choosedYear = year
                 choosedMonth = month + 1
                 choosedDay = dayOfMonth
+                flag = 1
+                spinner.isEnabled = false
+                spinner.setBackgroundColor(Color.LTGRAY);
             },
             // Установите текущую дату по умолчанию
             LocalDateTime.now().year,
