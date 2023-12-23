@@ -79,11 +79,11 @@
             android:ellipsize="none"
             cardView:layout_constraintBottom_toBottomOf="parent"
             cardView:layout_constraintEnd_toEndOf="parent"
-            cardView:layout_constraintHorizontal_bias="0.055"
+            cardView:layout_constraintHorizontal_bias="0.051"
             cardView:layout_constraintRight_toRightOf="parent"
             cardView:layout_constraintStart_toStartOf="parent"
             cardView:layout_constraintTop_toTopOf="parent"
-            cardView:layout_constraintVertical_bias="1"
+            cardView:layout_constraintVertical_bias="1.2"
             tools:text="Monday" />
 
         <TextView
