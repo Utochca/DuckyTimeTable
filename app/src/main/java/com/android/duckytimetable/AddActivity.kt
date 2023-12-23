@@ -31,6 +31,7 @@ class AddActivity : AppCompatActivity() {
     private var button: Button? = null
     private var button2: Button? = null
     private var flag = 0
+    private var date = ""
     private var choosedYear: Int = 0
     private var choosedMonth: Int = 0
     private var choosedDay: Int = 0
@@ -111,6 +112,9 @@ class AddActivity : AppCompatActivity() {
                 "Суббота"->newWeekDayId=5
                 "Воскресенье"->newWeekDayId=6
             }
+            if(flag == 1){
+                addweekDays += date
+            }
             val timetable = Timetable(0,addName,Integer.parseInt(addMinutes),Integer.parseInt(addHours),
                                   addweekDays,addnewDet,newWeekDayId)
             mTimetableViewModel.addTimetable(timetable)
@@ -187,10 +191,11 @@ class AddActivity : AppCompatActivity() {
             this,
             { _, year, month, dayOfMonth ->
                 // Здесь вы обрабатываете выбранную дату
-                val selectedDate = "$dayOfMonth/${month + 1}/$year"
+                date = "$dayOfMonth/${month + 1}/$year"
                 // Устанавливаете выбранную дату в ваш TextView или другой элемент интерфейса
                 // Например:
-                button2?.text = selectedDate
+                button2?.text = date
+                date = ", $dayOfMonth/${month + 1}/$year"
                 choosedYear = year
                 choosedMonth = month + 1
                 choosedDay = dayOfMonth
