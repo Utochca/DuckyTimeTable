@@ -1,6 +1,8 @@
 package com.android.duckytimetable
 
+import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +26,11 @@ class AddActivity : AppCompatActivity() {
     lateinit var spinnerHours :Spinner
     lateinit var spinnerMinutes :Spinner
     private var button: Button? = null
+    private var button2: Button? = null
+    private var flag = 0
+    private var choosedYear: Int = 0
+    private var choosedMonth: Int = 0
+    private var choosedDay: Int = 0
     private lateinit var  mTimetableViewModel : TimetableViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +71,14 @@ class AddActivity : AppCompatActivity() {
         button?.setOnClickListener{
             insertDataToDatabase()
         }
+
+        button2 = findViewById(R.id.button)
+        button2?.setOnClickListener{
+            showDatePickerDialog()
+            flag = 1
+            spinner.isEnabled = false
+            spinner.setBackgroundColor(Color.LTGRAY);
+        }
     }
     private fun insertDataToDatabase(){
        val name : TextView = findViewById(R.id.editTextText)
@@ -102,12 +117,22 @@ class AddActivity : AppCompatActivity() {
         val scheduler = AndroidAlarmScheduler(this)
         var alarmItem: AlarmItem? = null
 
-        alarmItem = AlarmItem(
-            time = createDayOfWeek(newWeekDayId+1, addHours.toInt(), addMinutes.toInt()),
-            name = addName,
-            description = addnewDet
-        )
-        Log.d("AddActivity",createDayOfWeek(newWeekDayId+1, addHours.toInt(), addMinutes.toInt()).toString()+" "+addName+" "+addnewDet);
+        if(flag == 0) {
+            alarmItem = AlarmItem(
+                time = createDayOfWeek(newWeekDayId + 1, addHours.toInt(), addMinutes.toInt()),
+                name = addName,
+                description = addnewDet
+            )
+            Log.d("AddActivity",createDayOfWeek(newWeekDayId+1, addHours.toInt(), addMinutes.toInt()).toString()+" "+addName+" "+addnewDet);
+        }
+        else{
+            alarmItem = AlarmItem(
+                time = createDayOfWeek2(choosedYear, choosedMonth, choosedDay, addHours.toInt(), addMinutes.toInt()),
+                name = addName,
+                description = addnewDet
+            )
+            Log.d("AddActivity",createDayOfWeek2(choosedYear, choosedMonth, choosedDay, addHours.toInt(), addMinutes.toInt()).toString()+" "+addName+" "+addnewDet);
+        }
 
         scheduler.schedule(alarmItem)
 
@@ -139,6 +164,33 @@ class AddActivity : AppCompatActivity() {
         dt = dt.plusDays(daysUntilTargetDay.toLong())
 
         return dt
+    }
+
+    fun createDayOfWeek2(year: Int, month: Int, dayOfWeek: Int, hour: Int, min: Int): LocalDateTime {
+        val dt = LocalDateTime.of(year, month, dayOfWeek, hour, min, 0)
+
+        return dt
+    }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth ->
+                // Здесь вы обрабатываете выбранную дату
+                val selectedDate = "$dayOfMonth/${month + 1}/$year"
+                // Устанавливаете выбранную дату в ваш TextView или другой элемент интерфейса
+                // Например:
+                button2?.text = selectedDate
+                choosedYear = year
+                choosedMonth = month + 1
+                choosedDay = dayOfMonth
+            },
+            // Установите текущую дату по умолчанию
+            LocalDateTime.now().year,
+            LocalDateTime.now().monthValue - 1,
+            LocalDateTime.now().dayOfMonth
+        )
+        datePicker.show()
     }
 
 }

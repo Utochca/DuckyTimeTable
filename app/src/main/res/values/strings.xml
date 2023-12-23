@@ -7,6 +7,7 @@
     <string name="Описание">Описание</string>
     <string name="dots">:</string>
     <string name="No_Data">Чего-то не хватает…</string>
+    <string name="Date">Задать конкретную дату</string>
     <string-array name="weekDays">
         <item>Не выбрано</item>
         <item>Понедельник</item>
