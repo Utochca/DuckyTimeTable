@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.duckytimetable.data.Timetable
 import com.android.duckytimetable.data.TimetableViewModel
 import java.time.LocalDateTime
+import java.util.Calendar
 
 
 class AddActivity : AppCompatActivity() {
@@ -195,6 +196,8 @@ class AddActivity : AppCompatActivity() {
             LocalDateTime.now().monthValue - 1,
             LocalDateTime.now().dayOfMonth
         )
+        val cal = Calendar.getInstance()
+        datePicker.datePicker.minDate = cal.timeInMillis
         datePicker.show()
     }
 
