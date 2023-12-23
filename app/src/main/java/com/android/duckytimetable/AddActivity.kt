@@ -140,7 +140,12 @@ class AddActivity : AppCompatActivity() {
     private fun inputCheck(
         name: String, hours: String, minutes: String, //Вохвращает true если не все поля заполнены
         weekDays: String, newDet: String) : Boolean{
-      return ((name.isEmpty()) || (weekDays=="Не выбрано") || (newDet.isEmpty()))
+        if(flag == 0) {
+            return ((name.isEmpty()) || (weekDays == "Не выбрано") || (newDet.isEmpty()))
+        }
+        else{
+            return ((name.isEmpty()) || (newDet.isEmpty()))
+        }
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
