@@ -39,16 +39,15 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Пока что здесь  ничего нет"
-        android:textColor="#7F5C9F"
-        android:textColorHint="#49454F"
-        android:textColorLink="#7F5C9F"
+        android:text="@string/No_Data"
+        android:textColor="?attr/backgroundColor_fragment"
+        android:textSize="20sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.33" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
