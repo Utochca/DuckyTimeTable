@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.android.duckytimetable.data.Timetable
 import com.android.duckytimetable.data.TimetableViewModel
+import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Calendar
 
@@ -88,13 +90,18 @@ class AddActivity : AppCompatActivity() {
         val addName = name.text.toString()
         val addHours = hours.selectedItem.toString()
         val addMinutes = minutes.selectedItem.toString()
-        val addweekDays = weekDays.selectedItem.toString()
+        var addweekDays = weekDays.selectedItem.toString()
         val addnewDet = newDet.text.toString()
         var newWeekDayId=0;
         if(inputCheck(addName,addHours,addMinutes,addweekDays,addnewDet)){
             Toast.makeText(this,"Please fill out all fields!",Toast.LENGTH_SHORT).show()
         }
         else{
+            if(flag == 1){
+                val dayOfWeek = calculateDayOfWeek(choosedYear, choosedMonth, choosedDay)
+                val russianDayOfWeek = getRussianDayOfWeek(dayOfWeek)
+                addweekDays = russianDayOfWeek
+            }
             when(addweekDays){
                 "Понедельник"->newWeekDayId=0
                 "Вторник"->newWeekDayId=1
@@ -199,6 +206,23 @@ class AddActivity : AppCompatActivity() {
         val cal = Calendar.getInstance()
         datePicker.datePicker.minDate = cal.timeInMillis
         datePicker.show()
+    }
+
+    fun calculateDayOfWeek(year: Int, month: Int, day: Int): DayOfWeek {
+        val date = LocalDate.of(year, month, day)
+        return date.dayOfWeek
+    }
+
+    fun getRussianDayOfWeek(dayOfWeek: DayOfWeek): String {
+        return when (dayOfWeek) {
+            DayOfWeek.MONDAY -> "Понедельник"
+            DayOfWeek.TUESDAY -> "Вторник"
+            DayOfWeek.WEDNESDAY -> "Среда"
+            DayOfWeek.THURSDAY -> "Четверг"
+            DayOfWeek.FRIDAY -> "Пятница"
+            DayOfWeek.SATURDAY -> "Суббота"
+            DayOfWeek.SUNDAY -> "Воскресенье"
+        }
     }
 
 }
