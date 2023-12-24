@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/backgroundColor_main"
+    tools:context=".ChangeActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/backgroundColor_toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/Base.Theme.DuckyTimetable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center_vertical"
+            android:text="@string/app_name"
+            android:textColor="?attr/fontColor"
+            android:textSize="20sp" />
+    </androidx.appcompat.widget.Toolbar>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="170dp"
+        android:layout_height="74dp"
+        android:backgroundTint="?attr/backgroundColor_fragment"
+        android:text="@string/save"
+        android:textSize="20sp"
+        app:iconPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.814" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="217dp"
+        android:layout_height="74dp"
+        android:backgroundTint="?attr/backgroundColor_fragment"
+        android:text="@string/Date"
+        android:textSize="20sp"
+        app:iconPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.547" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="266dp"
+        android:layout_height="51dp"
+        android:background="@drawable/outline"
+        android:popupBackground="?attr/backgroundColor_fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.416" />
+
+    <EditText
+        android:id="@+id/editTextText45"
+        android:layout_width="239dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="Название"
+        android:background="@drawable/outline"
+        android:ems="10"
+        android:gravity="top|start"
+        android:hint="@string/Название"
+        android:inputType="textMultiLine"
+        android:textAlignment="viewStart"
+        android:textColor="?attr/fontColor"
+        android:textCursorDrawable="@drawable/edittext_cursor_color"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.181" />
+
+    <EditText
+        android:id="@+id/editTextText2"
+        android:layout_width="318dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="Описание"
+        android:background="@drawable/outline"
+        android:ellipsize="end"
+        android:ems="10"
+        android:gravity="top|start"
+        android:hint="@string/Описание"
+        android:inputType="textMultiLine"
+        android:maxLength="80"
+        android:maxLines="3"
+        android:textAlignment="viewStart"
+        android:textColor="?attr/fontColor"
+        android:textCursorDrawable="@drawable/edittext_cursor_color"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.672" />
+
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="79dp"
+        android:layout_height="55dp"
+        android:background="@drawable/outline"
+        android:dropDownWidth="wrap_content"
+        android:gravity="center_vertical"
+        android:popupBackground="?attr/backgroundColor_fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toEndOf="@+id/spinner2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.292" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="79dp"
+        android:layout_height="55dp"
+        android:background="@drawable/outline"
+        android:dropDownWidth="wrap_content"
+        android:fadeScrollbars="false"
+        android:gravity="center_vertical"
+        android:popupBackground="?attr/backgroundColor_fragment"
+        android:popupElevation="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.292" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/outline"
+        android:text="@string/dots"
+        android:textColor="?attr/fontColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.296" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

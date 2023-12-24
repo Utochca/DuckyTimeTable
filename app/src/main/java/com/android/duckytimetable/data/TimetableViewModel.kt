@@ -10,15 +10,16 @@ import kotlinx.coroutines.launch
 class TimetableViewModel(application: Application) : AndroidViewModel(application) {
     val readAllData: LiveData<List<Timetable>>
     private val repository: TimetableRepository
-    init{
+
+    init {
         val timetableDao = TimetableDatabase.getDatabase(application).timeTableDao()
         repository = TimetableRepository(timetableDao)
         readAllData = repository.readAllData
     }
 
-    fun addTimetable(timetable: Timetable){
-        viewModelScope.launch (Dispatchers.IO){
-          repository.addTimetable(timetable)
+    fun addTimetable(timetable: Timetable) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addTimetable(timetable)
         }
     }
 
@@ -28,7 +29,19 @@ class TimetableViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    suspend fun getTimetableByNameAndTime(name: String, hours: String, minutes: String): Timetable? {
+    suspend fun getTimetableByNameAndTime(
+        name: String,
+        hours: String,
+        minutes: String
+    ): Timetable? {
         return repository.getTimetableByNameAndTime(name, hours, minutes)
+    }
+
+    suspend fun updateTimetable(timetable: Timetable
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateTimetable(timetable)
+
+        }
     }
 }

@@ -15,4 +15,7 @@ class TimetableRepository(private val timetableDao: TimetableDao) {
     suspend fun getTimetableByNameAndTime(name: String, hours: String, minutes: String): Timetable? {
         return timetableDao.getTimetableByNameAndTime(name, hours, minutes)
     }
+    suspend fun updateTimetable(timetable: Timetable){
+        return timetableDao.updateTimetable(timetable)
+    }
 }

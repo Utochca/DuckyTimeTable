@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     private var toolbar: Toolbar? = null
     private var recyclerView: RecyclerView? = null
-    private var calk = 0
     private var linearLayoutManager: LinearLayoutManager? = null
     private lateinit var mTimetableViewModel : TimetableViewModel
     private lateinit var customAdapter: CustomAdapter

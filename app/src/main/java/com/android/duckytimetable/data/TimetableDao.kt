@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 //методы для доступа к базе данных
 @Dao
@@ -20,4 +21,7 @@ interface TimetableDao {
 
     @Query("SELECT * FROM timeTable_data WHERE name = :name AND hours = :hours AND minutes = :minutes")
     suspend fun getTimetableByNameAndTime(name: String, hours: String, minutes: String): Timetable?
+
+    @Update
+    suspend fun updateTimetable(timetable: Timetable)
 }
